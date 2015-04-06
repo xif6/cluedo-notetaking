@@ -1,0 +1,51 @@
+<section class="container-fluid">
+    <form class="row" ng-submit="save()">
+        <div class="col-md-12">
+            <label class="input-group">
+                <input
+                    type="text"
+                    placeholder="Player {{ players.length + 1 }}"
+                    ng-model="newPlayer.name"
+                    ng-required="true"
+                    id="playerName"
+                    class="form-control"
+                >
+                <span
+                    ng-model="newPlayer.me"
+                    ng-disabled="(players | filter:{me: true}).length"
+                    class="input-group-btn btn btn-info"
+                    btn-checkbox
+                >
+                    Me
+                </span>
+            </label>
+        </div>
+
+
+        <div class="col-md-12" ng-show="newPlayer.me">
+            <cards cards="newPlayer.cards"></cards>
+        </div>
+        <div class="col-md-offset-10 col-md-2">
+            <input
+                class="btn btn-primary btn-block"
+                ng-disabled="newPlayer.name == ''"
+                type="submit"
+                value="Save and Add..."
+                />
+            <input
+                class="btn btn-success btn-block"
+                ng-disabled="newPlayer.name == '' || players.length < 1"
+                ng-click="saveAndFinish()"
+                type="button"
+                value="Save and Finish"
+                />
+            <input
+                class="btn btn-warning btn-block"
+                ng-show="players.length >= 2"
+                ng-click="finish()"
+                type="button"
+                value="Finish"
+                />
+        </div>
+    </form>
+</section>

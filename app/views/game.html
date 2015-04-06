@@ -1,0 +1,67 @@
+<section class="container-fluid">
+    <form class="row" ng-submit="hypothesis()" name="gameForm">
+        <div class="col-md-12">
+            <h3>Player : {{ party.players[0].name }}</h3>
+        </div>
+
+        <div class="col-md-12">
+            <cards cards="round" type-view="radio" view-data="roundView"></cards>
+        </div>
+        <div class="col-md-12 space-bottom">
+            <h3>Which shows a card</h3>
+
+            <div class="btn-group btn-block btn-group-justified">
+                <label
+                    ng-repeat="player in party.players | limitTo : party.limitToOthers track by player.name"
+                    ng-model="$parent.playerShowCard"
+                    class="btn btn-default"
+                    btn-radio="'{{player.name}}'"
+                    >
+                    {{ player.name }}
+                </label>
+                <label
+                    ng-model="playerShowCard"
+                    class="btn btn-default"
+                    btn-radio="'cluedo-nobody'"
+                    >
+                    nobody
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="party.players[0].me && playerShowCard && playerShowCard != 'cluedo-nobody'">
+            <cards cards="roundView.model" type-view="radio-unique" view-data="roundSelectedView"></cards>
+        </div>
+        <div class="col-md-offset-10 col-md-2">
+            <input
+                class="btn btn-info btn-block"
+                type="submit"
+                ng-disabled="gameForm.$invalid"
+                value="Next player ..."
+                />
+        </div>
+        <!--ng-disabled="gameForm.$invalid || (party.players[0].me && playerShowCard != 'cluedo-nobody' && roundSelectedView.model == null)"-->
+    </form>
+
+    <div class="row">
+        <div class="col-md-12" ng-repeat="player in party.players | orderBy: 'name' track by player.name">
+            <h3>{{player.name}}</h3>
+
+            <div>
+                locked : {{player.locked | json}}<br>
+                me : {{player.me | json}}<br>
+                nbCardsExpected : {{player.nbCardsExpected | json}}<br>
+                nbCardsKnown : {{player.nbCardsKnown | json}}<br>
+            </div>
+            <ol>
+                <li ng-repeat="card in player.cards track by card.name">{{card | json}}</li>
+            </ol>
+            <ol>
+                <li ng-repeat="cards in player.cardsPossible">
+                    <ul>
+                        <li ng-repeat="card in cards track by card.name">{{card | json}}</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+</section>

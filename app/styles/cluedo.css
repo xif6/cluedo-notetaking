@@ -1,0 +1,31 @@
+.ui-sortable li{
+    cursor: grab;
+}
+.ui-sortable li.ui-sortable-helper{
+    cursor: grabbing;
+}
+ul, ol{
+    /*padding-left: 20px;*/
+}
+.resume .label{
+    margin-right: 4px;
+}
+label{
+    display: block;
+}
+.space-bottom {
+    margin-bottom: 5px;
+}
+
+
+.input-group-btn:first-child.btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.input-group-btn:last-child.btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.input-group-btn.btn {
+    font-size: 14px;
+}

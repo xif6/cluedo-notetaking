@@ -1,0 +1,30 @@
+<div class="btn-group-vertical btn-block" ng-switch="typeView">
+    <label
+        ng-repeat="card in cards | filter: filter | orderBy: orderBy track by card.name"
+        ng-switch-when="radio-unique"
+        ng-model="$parent.viewData.name"
+        class="btn btn-default"
+        btn-radio="'{{card}}'"
+        >
+        {{ card.name }}
+    </label>
+    <label
+        ng-repeat="card in cards | filter: filter | orderBy: orderBy track by card.name"
+        ng-switch-when="radio"
+        ng-model="$parent.model.name"
+        class="btn btn-default"
+        btn-radio="'{{card.name}}'"
+        >
+        {{ card.name }}
+    </label>
+    <label
+        ng-repeat="card in cards | filter: filter | orderBy: orderBy track by card.name"
+        ng-switch-default
+        ng-model="card.hand"
+        class="btn btn-default"
+        btn-checkbox
+        ng-disabled="'{{card.hand.toString()}}' === 'false'"
+        >
+        {{ card.name }}
+    </label>
+</div>

@@ -1,0 +1,32 @@
+<ul class="list-group">
+    <li
+        ng-repeat="card in cards | filter: filter | orderBy: orderBy track by card.name"
+        ng-class="{radio: (typeView == 'radio' || typeView == 'radio-unique'), checkbox: typeView != 'radio'}"
+        ng-switch="typeView"
+        class="list-group-item"
+        >
+        <label>
+            <input ng-switch-when="radio-unique"
+                   type="radio"
+                   name="{{$parent.viewData.name}}"
+                   ng-model="$parent.viewData.model"
+                   ng-value="card"
+                   ng-required="$parent.viewData.required()"
+                >
+            <input ng-switch-when="radio"
+                   type="radio"
+                   name="{{$parent.model.type}}"
+                   ng-model="$parent.model.name"
+                   ng-value="card.name"
+                   ng-required="true"
+                >
+            <input ng-switch-default
+                   type="checkbox"
+                   ng-model="card.hand"
+                   ng-disabled="card.hand === false"
+                >
+            {{ card.name }}
+        </label>
+    </li>
+    {{model}}
+</ul>

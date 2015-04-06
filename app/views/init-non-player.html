@@ -1,0 +1,17 @@
+<section class="container-fluid">
+    <form class="row" ng-submit="save()">
+
+        <div class="col-md-12">
+            <h3>Cards non player</h3>
+            <cards cards="nonPlayerCards"></cards>
+        </div>
+        <div class="col-md-offset-10 col-md-2">
+            <input
+                class="btn btn-primary btn-block"
+                ng-disabled="(nonPlayerCards | filter : {hand: true}).length != party.nbCardsNonPlayer"
+                type="submit"
+                value="Save"
+            />
+        </div>
+    </form>
+</section>

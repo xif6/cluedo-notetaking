@@ -1,0 +1,70 @@
+<section class="container-fluid resume">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Suspects</h3>
+
+                    <div class="list-group">
+                        <div
+                            ng-repeat="card in cardsResume | filter: {type: 'suspects'} | orderBy: 'name' track by card.name"
+                            class="list-group-item"
+                            ng-class="card.hand == false ? 'alert-success' : (card.hand == null ? 'alert-info' : 'alert-danger')"
+                            >
+                            <strong>{{ card.name }} :</strong>
+                            <div>
+                                <span
+                                    ng-repeat="player in card.players | orderBy: 'name' track by player.name"
+                                    ng-class="player.locked ? 'label-success' : 'label-default'"
+                                    class="label"
+                                    >{{player.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>Weapons</h3>
+
+                    <div class="list-group">
+                        <div
+                            ng-repeat="card in cardsResume | filter: {type: 'weapons'} | orderBy: 'name' track by card.name"
+                            class="list-group-item"
+                            ng-class="card.hand == false ? 'alert-success' : (card.hand == null ? 'alert-info' : 'alert-danger')"
+                            >
+                            <strong>{{ card.name }} :</strong>
+                            <div>
+                                <span
+                                    ng-repeat="player in card.players | orderBy: 'name' track by player.name"
+                                    ng-class="player.locked ? 'label-success' : 'label-default'"
+                                    class="label"
+                                    >{{player.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>Rooms</h3>
+
+                    <div class="list-group">
+                        <div
+                            ng-repeat="card in cardsResume | filter: {type: 'rooms'} | orderBy: 'name' track by card.name"
+                            class="list-group-item"
+                            ng-class="card.hand == false ? 'alert-success' : (card.hand == null ? 'alert-info' : 'alert-danger')"
+                            >
+                            <strong>{{ card.name }} :</strong>
+
+                            <div>
+                                <span
+                                    ng-repeat="player in card.players | orderBy: 'name' track by player.name"
+                                    ng-class="player.locked ? 'label-success' : 'label-default'"
+                                    class="label btn-block"
+                                    >{{player.name}} : {{player.nbCardsKnown}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
